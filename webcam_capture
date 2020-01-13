@@ -1,0 +1,49 @@
+import cv2
+
+
+# Tested with Windows 10 and Python 3.6 (Requires Python 3.4 or higher)
+
+class V():
+    def __init__(self, name, webcam=True ,delay=1000):
+        
+        self.webcam = webcam
+        self.name = name
+        self.delay = delay
+
+        vc = cv2.VideoCapture(0)
+
+    def showfeed(self):
+        cv2.namedWindow(str(self.name))
+        if self.webcam is True:
+            vc = cv2.VideoCapture(0)
+        else:
+            vc = cv2.VideoCapture(str(self.webcam))
+        if vc.isOpened(): # try to get the first frame
+            r, f = vc.read()
+            print("Showing feed, Press ESC to exit")
+        else:
+            r = False
+        while r:
+            r , f = vc.read()
+            cv2.imshow(self.name, f) # Show the video frame
+            key = cv2.waitKey(1)
+            if key == 27: # exit on ESC
+                cv2.destroyAllWindows()
+                vc.release()
+                return
+    
+    def captureimages(self):
+        vc = cv2.VideoCapture(0)
+        f = vc.read()[1]
+        count = 0
+        while count != 10:
+            cv2.imwrite(f'capture_{self.name}_{str(count)}.png',f) # Change f-string for older Python compatibility
+            if count == 10:
+                count = 0
+
+
+#V('MyWebcam').captureimages()
+#V('MyWebcam').showfeed()
+
+
+#cv2.destroyAllWindows(), vc.release()
