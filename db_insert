@@ -62,3 +62,77 @@ try:
     addDeveloper(name='John', joiningDate=datetime.datetime.now())
 except:
     sqlite3.InternalError
+from datetime import datetime
+
+
+today = datetime.now().isoformat(sep=" ")[:19]
+
+
+
+def createtable(tablename):
+    db = sqlite3.connect("static/app.db")
+    cursor = db.cursor()
+    try:
+        cursor.execute('''create TABLE activities(name text, date_from text,date_to text, location text, people text, notes text ,created text)''')
+        db.commit()
+        print("Table created")
+    except Exception as e:
+        db.rollback()
+        print(e)
+        print("Failed")
+    db.close()
+    return
+
+def createtable2(tablename):
+    db = sqlite3.connect("static/app.db")
+    cursor = db.cursor()
+    try:
+        cursor.execute('''CREATE TABLE action_log(action_id integer primary key not null,action text, date_from text,date_to text, location text, people text, notes text ,created text)''')
+        db.commit()
+        print("Table created")
+    except Exception as e:
+        db.rollback()
+        print(e)
+        print("Failed")
+    db.close()
+    return
+
+def writetodb(activity):
+    db = sqlite3.connect("static/app.db")
+    cursor = db.cursor()
+    try:
+        cursor.execute("INSERT INTO activities VALUES(?,?,?,?,?,?,?)",activity)
+        db.commit()
+        print("Commit succes")
+    except Exception as e:
+        db.rollback()
+        print(e)
+        print("Commit failed")
+    db.close()
+    return
+
+def delfromdb(table="activities",column='',query=''):
+    db = sqlite3.connect("static/app.db")
+    cursor = db.cursor()
+    try:
+        cursor = cursor.execute(f'''DELETE FROM {table} WHERE "{column}" LIKE "%{query}%" ''')
+        db.commit()
+        print("DB Succes")
+        return 
+    except Exception as e:
+        db.rollback()
+        print(e)
+        print("DB update failed")
+    db.close()
+    
+
+    
+def readfromdb(table=None , column='' , query=''):
+    db = sqlite3.connect("static/app.db")
+    cursor = db.cursor()
+    cursor.execute(f"SELECT DISTINCT * FROM {table} WHERE {column} LIKE '%{query}%' ")
+    return [x for x in cursor]
+
+
+
+
