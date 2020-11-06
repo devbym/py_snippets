@@ -1,0 +1,35 @@
+import random
+
+def dices():        # Outputs number of dices
+    while True:
+        try:
+            n = int(input("How many dices do you want to throw?: "))
+        except ValueError:
+            print( "Not a number. Try again... \n" )
+            continue
+        if n < 0:
+            print( "Can not throw negative amounts... \n")
+            continue
+        return n
+
+def throw(d):
+    c = 0       # Outputs result (1-6) of throw while d > 0 
+    print()
+    while d > 0 :
+        rng = random.randint(1,6)
+        c = c + rng
+        d = d - 1
+        print(rng,end="\t")
+    return c
+        
+try:
+    d = dices()
+    t = throw(d)
+    av = round( t / d , 2)
+    print("\n\n{:>6} throws \ncount is {} \naverage is {}\n".format(d, t, av))
+    
+    
+except Exception:
+    exit()
+
+
