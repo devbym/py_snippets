@@ -1,6 +1,7 @@
-# py_snippets
-A simple collection of Python snippets
+### A collection of Python snippets
 
-
-Tkinter simple GUI window
-QR code maker
+- Tkinter pop-a-window
+- SQL DB insert
+- Roll some dices
+- Capture webcam input
+- Create QR code
