@@ -1,0 +1,23 @@
+### Converts RGB values into normalized HEX 
+
+def rgb2hex(r:int, g:int, b:int,):
+    """Takes in a tuple of 3 integers in range 0-256 - like (255,255,255) or (64,32,16) - representing the 3 [red,green,blue] color channels. These values will be normalized & converted to 6 digit HEX-colorcodes like #000000 or #3F3F3F """
+    hexn = ""
+    rn = range(0,256)
+    hi = max(rn)
+    lo = min(rn)
+    for x in (r,g,b):
+        if x not in rn:
+            if x > hi:
+                x = hi
+            elif x < lo:
+                x = lo
+        f = format(abs(x),'x')
+        if len(f) == 1:
+            f = "0"+f 
+        hexn += f
+    return "#"+"".join([x.capitalize() for x in hexn])
+    
+
+
+rgb2hex(-20,275,0)
