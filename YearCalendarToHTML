@@ -1,0 +1,7 @@
+import calendar
+
+def WriteHTMLCalendarToFile(year:int):
+    html_calendar = calendar.HTMLCalendar(firstweekday=0,).formatyear(year)
+    with open("html_calendar_2022.html","w") as file_out:
+        file_out.write(html_calendar)
+    return
