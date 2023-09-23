@@ -14,3 +14,4 @@
 - [PNGtoB64 convertor](https://github.com/devbym/py_snippets/blob/master/png_b64_image_convertor.py)
 - [HTML yeardayscalendar](https://github.com/devbym/py_snippets/blob/master/YearCalendarToHTML)
 - [TimeSeries weekenddays](https://github.com/devbym/py_snippets/blob/master/timeseries_weekend.py)
+- [Datetime convenience functions](https://github.com/devbym/py_snippets/blob/master/dt_convenience.py)
